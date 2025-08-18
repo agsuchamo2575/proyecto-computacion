@@ -1,0 +1,58 @@
+@startuml proyecto_juego
+
+class Raza {
+    - nombre: str
+    - descripcion: str
+    - estadisticas: float
+}
+
+class Clase {
+    - nombre: str
+    - descripcion: str
+    - estadisticas: float
+}
+
+class Item {
+    - nombre: str
+    - tipo: str
+    - efecto: float
+}
+
+class Personaje {
+    - nombre: str
+    - vida: float
+    - daño: float
+    - armadura: float
+    - raza: Raza
+    - clase: Clase
+    - mana: float
+    - nivel: int
+    + atacar(): void 
+    + recibir_daño(): void
+    + defender(): void
+    + usar_item(item: Item): void
+    + usar_habilidad_especial(): void
+}
+
+class Protagonista {
+    - experiencia: float
+    + subir_nivel(): void
+}
+
+class Enemigo {
+    - es_jefe: boolean
+}
+
+class Lugar {
+    - nombre: str
+    - lista_enemigos: List<Enemigo>
+    + iniciar_batalla(List<Protagonista>): void 
+}
+
+Personaje "1" -- "0..*" Item
+
+Personaje --> Protagonista
+Personaje --> Enemigo
+Personaje "1" -- "1" Raza
+Personaje "1" -- "1" Clase
+Lugar "1" -- "1..*" Enemigo 
