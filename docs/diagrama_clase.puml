@@ -1,11 +1,5 @@
 @startuml proyecto_juego
 
-class Raza {
-    - nombre: str
-    - descripcion: str
-    - estadisticas: float
-}
-
 class Clase {
     - nombre: str
     - descripcion: str
@@ -45,14 +39,29 @@ class Enemigo {
 
 class Lugar {
     - nombre: str
-    - lista_enemigos: List<Enemigo>
-    + iniciar_batalla(List<Protagonista>): void 
 }
+
+class Juego {
+    - lista_protagonista: List<Protagonista>
+    - lista_enemigo: List<Enemigo>
+    - lista_lugar: List<Lugar>
+    + iniciar(): void
+    + avanzar_lugar(): void 
+    + guardar_partida():void
+    + cargar_partida(): void 
+}
+
+class Combate{
+    +iniciar_combate():
+}
+
 
 Personaje "1" -- "0..*" Item
 
 Personaje --> Protagonista
 Personaje --> Enemigo
-Personaje "1" -- "1" Raza
 Personaje "1" -- "1" Clase
 Lugar "1" -- "1..*" Enemigo 
+Juego "1" -- "1..*" Protagonista
+Juego "1" -- "1..*" Enemigo
+Juego "1" -- "1..*" Lugar
