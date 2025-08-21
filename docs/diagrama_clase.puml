@@ -1,67 +1,96 @@
 @startuml proyecto_juego
 
+class Raza {
+    - descripcion: String
+}
+
+class Humano {
+    + determinacion(): Void
+}
+
+class NiñoBosque {
+    + magiaNatural(): Void
+}
+
+class Gigante {
+    + fuerzaBruta(): Void
+}
+
 class Clase {
-    - nombre: str
-    - descripcion: str
-    - estadisticas: float
+    - descripcion: String
+    - daño: Float
+    - armadura: Float
+    - vida: Float
+}
+
+class Arquero {
+    + tiroCertero(): Void
+}
+
+class Guerrero {
+    + golpeHelado(): Void
+}
+
+class MagoFuego {
+    - mana: Float
+    + fuegoDragon(): Void
 }
 
 class Item {
-    - nombre: str
-    - tipo: str
-    - efecto: float
+    - nombre: String
+    - tipo: String
+    - efecto: Float
 }
 
 class Personaje {
-    - nombre: str
-    - vida: float
-    - daño: float
-    - armadura: float
-    - raza: Raza
-    - clase: Clase
-    - mana: float
-    - nivel: int
-    + atacar(): void 
-    + recibir_daño(): void
-    + defender(): void
-    + usar_item(item: Item): void
-    + usar_habilidad_especial(): void
+    - nombre: String
+    - vida: Float
+    - daño: Float
+    - armadura: Float
+    - nivel: Integer
+    + atacar(): Void 
+    + recibirDaño(): Void
+    + defender(): Void
+    + usarItem(item: Item): Void
+    + usarHabilidadEspecial(): Void
 }
 
 class Protagonista {
-    - experiencia: float
-    + subir_nivel(): void
+    - experiencia: Float
+    + subirNivel(): Void
 }
 
 class Enemigo {
-    - es_jefe: boolean
+    - esJefe: Boolean
 }
 
 class Lugar {
-    - nombre: str
+    - nombre: String
+    - descripcion: String
 }
 
 class Juego {
-    - lista_protagonista: List<Protagonista>
-    - lista_enemigo: List<Enemigo>
-    - lista_lugar: List<Lugar>
-    + iniciar(): void
-    + avanzar_lugar(): void 
-    + guardar_partida():void
-    + cargar_partida(): void 
+    + personaje: List<Personaje>
+    + lugar: List<Lugar>
+    + iniciarBatalla(): Void
+    + avanzarLugar(): Void
+    + guardarPartida(): Void
+    + cargarPartida(): Void
 }
-
-class Combate{
-    +iniciar_combate():
-}
-
 
 Personaje "1" -- "0..*" Item
 
-Personaje --> Protagonista
-Personaje --> Enemigo
+Personaje <|-- Protagonista
+Personaje <|-- Enemigo
+Personaje "1" -- "1" Raza
 Personaje "1" -- "1" Clase
-Lugar "1" -- "1..*" Enemigo 
-Juego "1" -- "1..*" Protagonista
-Juego "1" -- "1..*" Enemigo
-Juego "1" -- "1..*" Lugar
+
+Clase <|-- Arquero
+Clase <|-- Guerrero
+Clase <|-- MagoFuego
+Raza <|-- Humano
+Raza <|-- NiñoBosque
+Raza <|-- Gigante
+
+Juego *-- Personaje
+Juego *-- Lugar
