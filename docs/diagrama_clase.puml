@@ -39,7 +39,8 @@ class MagoFuego {
 class Item {
     - nombre: String
     - tipo: String
-    - efecto: Float
+    - efecto: String 
+    + aplicar(personaje: Personaje): Void
 }
 
 class Personaje {
@@ -49,7 +50,7 @@ class Personaje {
     - armadura: Float
     - nivel: Integer
     + atacar(): Void 
-    + recibirDaño(): Void
+    + recibirDaño(): Float
     + defender(): Void
     + usarItem(item: Item): Void
     + usarHabilidadEspecial(): Void
@@ -57,28 +58,34 @@ class Personaje {
 
 class Protagonista {
     - experiencia: Float
+    + ganarExperiencia(): void
     + subirNivel(): Void
+
 }
 
 class Enemigo {
     - esJefe: Boolean
+    - recompensaExp: Float
+    - drop: List<Item>
 }
 
 class Lugar {
     - nombre: String
     - descripcion: String
+    - enemigos: List<Enemigo>
+    - jefe: Enemigo
+    + resolverMazmorra(): Void
 }
 
 class Juego {
-    + personaje: List<Personaje>
-    + lugar: List<Lugar>
+    + personajes: List<Protagonista>
+    + lugares: List<Lugar>
     + iniciarBatalla(): Void
     + avanzarLugar(): Void
     + guardarPartida(): Void
     + cargarPartida(): Void
 }
 
-Personaje "1" -- "0..*" Item
 
 Personaje <|-- Protagonista
 Personaje <|-- Enemigo
@@ -92,5 +99,10 @@ Raza <|-- Humano
 Raza <|-- NiñoBosque
 Raza <|-- Gigante
 
-Juego *-- Personaje
+Juego *-- Protagonista
 Juego *-- Lugar
+
+Item "0..*" --  "0..*" Protagonista
+Item "0..*" -- "0..*" Enemigo
+Lugar *-- Enemigo
+
