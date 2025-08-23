@@ -28,3 +28,9 @@ class Item:
     def efecto(self, valor):
         self.__efecto = valor
 
+    # Método aplicar
+    def aplicar(self, personaje):
+        print("Este método aumentaría los atributos del personaje según el tipo de item. "
+          "Por ejemplo, si es una poción de vida, incrementaría la vida del personaje; "
+          "si es un item de fuerza, aumentaría el daño, etc.")
+

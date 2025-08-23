@@ -63,19 +63,23 @@ class Personaje:
         print("El personaje ataca")
     
     def recibir_daño(self):
-        print("El personaje recibe daño")
+        print("El personaje recibe daño, descontando armadura y efectos de defensa")
 
     def defender(self):
-        print("El personaje se defiende")
+        print("El personaje se defiende, reduciendo daño de enemigos este turno")
     
-    def usar_item(self):
-        print("El personaje usa un item")
+    def usar_item(self, item):
+        print("El personaje usa un item"
+              "por ejemplo, curar vida o mejorar atributos temporalmente")
 
     def usar_habilidad_especial(self):
-        print("El personaje utiliza una hablidad especial")
+        print("El personaje utiliza una hablidad especial segun su clase"
+              "por ejemplo, 'Tiro Certero', 'Golpe Helado' o 'Fuego Dragón'")
 
+
+# Clase Protagonista
 class Protagonista(Personaje):
-    def __init__(self, nombre, vida, daño, armadura, nivel, clase, items, experiencia):
+    def __init__(self, nombre, vida, daño, armadura, nivel, clase, items, experiencia: float):
         super().__init__(nombre, vida, daño, armadura, nivel, clase, items)
         self.__experiencia = experiencia
 
@@ -88,11 +92,24 @@ class Protagonista(Personaje):
     @experiencia.setter
     def experiencia(self, valor):
         self.__experiencia = valor
+    
+    def ganar_experiencia(self, cantidad):
+        print("Aquí se sumaría a la experiencia actual del protagonista."
+              "Si la experiencia alcanza el límite para subir de nivel, se llamaría al método 'subir_nivel'.")
+    
+    def subir_nivel(self):
+        print("El protagonista sube de nivel."
+              "Se incrementarían los atributos: vida, daño, armadura y posiblemente desbloqueo de habilidades."
+              "También se podría reiniciar la experiencia acumulada para el siguiente nivel.")
 
+
+# Clase enemigo
 class Enemigo(Personaje):
-    def __init__(self, nombre, vida, daño, armadura, nivel, clase, items, es_jefe):
+    def __init__(self, nombre, vida, daño, armadura, nivel, clase, items, es_jefe: bool, drop: list, recompensaExp: float):
         super().__init__(nombre, vida, daño, armadura, nivel, clase, items)
         self.__es_jefe = es_jefe
+        self.__drop = drop   # Lista de Items que puede soltar
+        self.__recompensaExp = recompensaExp   # Experiencia otorgada al morir
     
     # Get de es_jefe
     @property
@@ -103,4 +120,24 @@ class Enemigo(Personaje):
     @es_jefe.setter
     def es_jefe(self, valor):
         self.__es_jefe = valor
+    
+    # Get de drop
+    @property
+    def drop(self):
+        return self.__drop
+
+    #Set de drop
+    @drop.setter
+    def drop(self, valor):
+        self.__drop = valor
+
+    # Get de recompensaExp
+    @property
+    def recompensaExp(self):
+        return self.__recompensaExp
+
+    # Set de recompensaExp
+    @recompensaExp.setter
+    def recompensaExp(self, valor):
+        self.__recompensaExp = valor
     

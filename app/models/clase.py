@@ -52,14 +52,17 @@ class Arquero(Clase):
         super().__init__(descripcion, daño, armadura, vida)
 
     def tiro_certero(self):
-        print("Acá está el tiro certero")
+        print("Este método usaría la habilidad 'Tiro Certero'. "
+              "En el juego real, haría un ataque más fuerte que el normal a un enemigo seleccionado, "
+              "ignorando parte de su armadura o aplicando daño crítico.")
 
 class Guerrero(Clase):
     def __init__(self, descripcion, daño, armadura, vida):
         super().__init__(descripcion, daño, armadura, vida)
     
     def golpe_helado(self):
-        print("Acá está el golpe helado")
+         print("Este método usaría la habilidad 'Golpe Helado'. "
+              "En el juego real, haría daño a un enemigo y podría reducir temporalmente su velocidad o armadura.")
 
 class MagoFuego(Clase):
     def __init__(self, descripcion, daño, armadura, vida, mana):
@@ -77,5 +80,7 @@ class MagoFuego(Clase):
         self.__mana = valor
 
     def fuego_dragon(self):
-        print("Fuego Dragon")
+        print("Este método usaría la habilidad 'Fuego Dragón'. "
+              "En el juego real, lanzaría un ataque poderoso de fuego a todos los enemigos o a un objetivo principal, "
+              "consumiendo mana y aplicando daño significativo.")
 
