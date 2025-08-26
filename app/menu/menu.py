@@ -4,10 +4,10 @@ def menu():
                 1. Iniciar Partida
                 2. Cargar Partida
                 3. Guardar Partida
-                4. Como jugar
+                4. Como Jugar
                 5. Salir 
             ''')
-        opcion = input("Elija una opción: ")
+        opcion = int(input("Elija una opción: "))
         
         if opcion == 1:
             print("Inciando partida...")
@@ -24,4 +24,5 @@ def menu():
             print("Entrada inválida, por favor seleccione una opcion válida")
 
     
-    
+if __name__== '__main__':
+    menu()
