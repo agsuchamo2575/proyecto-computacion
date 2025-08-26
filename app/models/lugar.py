@@ -6,6 +6,8 @@ class Lugar:
         self.__jefe = jefe 
         
         
+# Prueba de commit
+        
     @property
     def nombre(self):
         return self.__nombre
