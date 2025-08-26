@@ -39,3 +39,20 @@ class Lugar:
     @jefe.setter
     def jefe(self, valor):
         self.__jefe = valor
+        
+def to_dict(self):
+        return{
+            "nombre": self.nombre,
+            "descripcion": self.descripcion, 
+            "enemigos": self.enemigos, 
+            "jefe": self.jefe 
+        }
+        
+@classmethod
+def from_dict(cls, data: dict): 
+        return cls(
+            nombre = data["nombre"],
+            descripcion = data["descripcion"], 
+            enemigos = data ["enemigos"], 
+            jefe = data ["jefe"]
+        )

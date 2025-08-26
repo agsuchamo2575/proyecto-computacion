@@ -103,6 +103,31 @@ class Protagonista(Personaje):
               "También se podría reiniciar la experiencia acumulada para el siguiente nivel.")
 
 
+    def to_dict(self):
+        return{
+            "nombre": self.nombre,
+            "vida": self.vida,
+            "daño": self.daño,
+            "armadura": self.armadura,
+            "nivel": self.nivel,
+            "clase": self.clase, 
+            "items": self.items, 
+            "experiencia": self.__experiencia 
+        }
+    
+    @classmethod
+    def from_dict(cls, data: dict): 
+        return cls(
+            nombre = data["nombre"],
+            vida =data ["vida"],
+            daño = data ["daño"],
+            armadura = data ["armadura"],
+            nivel = data ["nivel"],
+            clase = data ["clase"], 
+            items = data ["items"], 
+            experiencia = data ["experiencia"]
+        )
+        
 # Clase enemigo
 class Enemigo(Personaje):
     def __init__(self, nombre, vida, daño, armadura, nivel, clase, items, es_jefe: bool, drop: list, recompensaExp: float):
@@ -140,4 +165,41 @@ class Enemigo(Personaje):
     @recompensaExp.setter
     def recompensaExp(self, valor):
         self.__recompensaExp = valor
+        
+    def to_dict(self):
+        return{
+            "nombre": self.nombre,
+            "vida": self.vida,
+            "daño": self.daño,
+            "armadura": self.armadura,
+            "nivel": self.nivel,
+            "clase": self.clase, 
+            "items": self.items, 
+            "es_jefe": self.es_jefe,
+            "recompensa_experiencia": self.recompensa_experiencia, 
+            "drop": self.drop
+        }
     
+    @classmethod
+    def from_dict(cls, data: dict): 
+        return cls(
+            nombre = data["nombre"],
+            vida =data ["vida"],
+            daño = data ["daño"],
+            armadura = data ["armadura"],
+            nivel = data ["nivel"],
+            clase = data ["clase"], 
+            items = data ["items"], 
+            es_jefe= data ["es jefe"], 
+            recompensa_experiencia= data ["recompensa_experiencia"], 
+            drop = data ["drop"]
+        )
+prota = Protagonista("Agus", 100, 20, 10, 5, "Guerrera", ["espada", "escudo"], 150.0)
+prota_dict = prota.to_dict()
+print(prota_dict)
+
+nuevo_prota = Protagonista.from_dict(prota_dict)
+print(nuevo_prota.nombre, nuevo_prota.experiencia)
+
+                                                         
+                                
