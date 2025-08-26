@@ -1,7 +1,5 @@
-from typing import List
-
 class Lugar:
-    def __init__(self,nombre: str, descripcion: str, enemigos: List [enemigos], jefe: "enemigos"):
+    def __init__(self,nombre: str, descripcion: str, enemigos, jefe: "enemigos"):
         self.__nombre = nombre
         self.__descripcion = descripcion
         self.__enemigos = enemigos
