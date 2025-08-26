@@ -1,5 +1,6 @@
 @startuml proyecto_juego
 
+
 class Raza {
     - descripcion: String
 }
