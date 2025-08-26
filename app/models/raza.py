@@ -12,24 +12,24 @@ class Raza:
     def descripcion(self,valor):
         self.__descripcion = valor 
         
-    class Humano(Raza):
-        def __init__(self):
-            super().__init__(Humano) #llama al constructor de raza
-        
-        def determinacion(self): 
-            print()
+class Humano(Raza):
+    def __init__(self):
+        super().__init__(Humano) #llama al constructor de raza
     
-    class NiñoBosque(Raza):
-        def __init__(self):
-            super().__init__(NiñoBosque)
-        
-        def determinacion(self):
-            print()
+    def determinacion(self): 
+        print()
+
+class NiñoBosque(Raza):
+    def __init__(self):
+        super().__init__(NiñoBosque)
     
-    class Gigante(Raza):
-        def __init__(self):
-            super().__init(Gigante)
-            
-        def determinacion(self):
-            print()
+    def determinacion(self):
+        print()
+
+class Gigante(Raza):
+    def __init__(self):
+        super().__init(Gigante)
+        
+    def determinacion(self):
+        print()
     
