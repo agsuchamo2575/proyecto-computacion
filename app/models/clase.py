@@ -6,6 +6,25 @@ class Clase:
         self.__armadura = armadura
         self.__vida = vida
 
+    # Conversion a Json
+    def to_dict(self):
+        return {
+            "descripcion": self.__descripcion,
+            "daño": self.__daño,
+            "armadura": self.__armadura,
+            "vida": self.__vida
+        }
+
+    # Conversion de Json a objeto
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            descripcion=data.get("descripcion"),
+            daño=data.get("daño"),
+            armadura=data.get("armadura"),
+            vida=data.get("vida")
+        )
+
     #Get de la descripción
     @property
     def descripcion(self):
@@ -51,6 +70,20 @@ class Arquero(Clase):
     def __init__(self, descripcion, daño, armadura, vida):
         super().__init__(descripcion, daño, armadura, vida)
 
+    # Conversion a Json
+    def to_dict(self):
+        return super().to_dict()
+    
+    # Conversion de Json a objeto
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            descripcion=data.get("descripcion"),
+            daño=data.get("daño"),
+            armadura=data.get("armadura"),
+            vida=data.get("vida")
+        )
+
     def tiro_certero(self):
         print("Este método usaría la habilidad 'Tiro Certero'. "
               "En el juego real, haría un ataque más fuerte que el normal a un enemigo seleccionado, "
@@ -59,7 +92,21 @@ class Arquero(Clase):
 class Guerrero(Clase):
     def __init__(self, descripcion, daño, armadura, vida):
         super().__init__(descripcion, daño, armadura, vida)
-    
+
+    # Conversion a Json
+    def to_dict(self):
+        return super().to_dict()
+
+    # Conversion de Json a objeto
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            descripcion=data.get("descripcion"),
+            daño=data.get("daño"),
+            armadura=data.get("armadura"),
+            vida=data.get("vida")
+        )
+
     def golpe_helado(self):
          print("Este método usaría la habilidad 'Golpe Helado'. "
               "En el juego real, haría daño a un enemigo y podría reducir temporalmente su velocidad o armadura.")
@@ -68,6 +115,23 @@ class MagoFuego(Clase):
     def __init__(self, descripcion, daño, armadura, vida, mana):
         super().__init__(descripcion, daño, armadura, vida)
         self.__mana = mana
+
+    # Conversion a Json
+    def to_dict(self):
+        data = super().to_dict()
+        data["mana"] = self.__mana
+        return data
+
+    # Conversion de Json a objeto
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            descripcion=data.get("descripcion"),
+            daño=data.get("daño"),
+            armadura=data.get("armadura"),
+            vida=data.get("vida"),
+            mana=data.get("mana")
+        )
 
     # Get del mana
     @property

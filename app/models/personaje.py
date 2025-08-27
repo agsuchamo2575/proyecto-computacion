@@ -6,7 +6,7 @@ class Personaje:
         self.__armadura = armadura
         self.__nivel = nivel
         self.__clase = clase
-        self.__items = items
+        self.__items = []
 
     # Get de nombre
     @property
@@ -57,7 +57,27 @@ class Personaje:
     @nivel.setter
     def nivel(self, valor):
         self.__nivel = valor
- 
+
+    # Get de clase
+    @property
+    def clase(self):
+        return self.__clase
+
+    # Set de clase
+    @clase.setter
+    def clase(self, valor):
+        self.__clase = valor
+
+    # Get de items
+    @property
+    def items(self):
+        return self.__items
+
+    # Set de items
+    @items.setter
+    def items(self, valor):
+        self.__items = valor
+
     # Metodos
     def atacar(self):
         print("El personaje ataca")
@@ -110,7 +130,7 @@ class Protagonista(Personaje):
             "daño": self.daño,
             "armadura": self.armadura,
             "nivel": self.nivel,
-            "clase": self.clase, 
+            "clase": self.clase.to_dict() if hasattr(self.clase, "to_dict") else self.clase,
             "items": self.items, 
             "experiencia": self.__experiencia 
         }
@@ -201,5 +221,4 @@ print(prota_dict)
 nuevo_prota = Protagonista.from_dict(prota_dict)
 print(nuevo_prota.nombre, nuevo_prota.experiencia)
 
-                                                         
-                                
+

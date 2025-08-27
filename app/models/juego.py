@@ -1,20 +1,27 @@
 import json 
 from .personaje import Personaje, Protagonista, Enemigo
 from .lugar import Lugar
+import os 
+
 class Juego:
     def __init__(self):
         self.__personajes = []
         self.__lugares = []
         
-    def to_dic(self):
+    def to_dict(self):
         return {
-            "personajes": [personajes.to_dict() for p in self.personajes],
-            "lugares": [lugar.to_dict() for l in self.lugares]
+            "personajes": [pj.to_dict() for pj in self.personajes],
+            "lugares": [l.to_dict() for l in self.lugares]
         }
-    def save(self, filename = "./partidas_guardadas/partida.json"):
-        with open (filename, "w") as f:
-            json.dump(self.to_dict(), f, indent=4)
-    
+    def guardar_partida(self, filename = "partidas_guardadas/partida.json"):
+        try:
+            os.makedirs(os.path.dirname(filename), exist_ok=True)
+            with open (filename, "w") as f:
+                json.dump(self.to_dict(), f, indent=4)
+                print("Partida guardada exitosamente.")
+        except Exception as e:
+            print(f"Error al guardar la partida: {e}")
+
     @classmethod
     def from_dict(cls, data):
         juego = cls()
@@ -23,8 +30,8 @@ class Juego:
         return juego
     
     @classmethod
-    def loaf(cls, filename="partida.json"):
-        with open(filaname, "r") as f:
+    def cargar_partida(cls, filename="partidas_guardadas/partida.json"):
+        with open(filename, "r") as f:
             data = json.load(f)
         return cls.from_dict(data) 
 
@@ -54,11 +61,5 @@ class Juego:
     
     def avanzarLugar(self):
         print("Avanzás al siguiente lugar")
-        
-    def guardarPartida(self):
-        print("Partida Guardada")
-        
-    def cargarPartida(self):
-        print("Partida cargada")
     
         

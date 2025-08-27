@@ -5,9 +5,6 @@ class Lugar:
         self.__enemigos = enemigos
         self.__jefe = jefe 
         
-        
-# Prueba de commit
-        
     @property
     def nombre(self):
         return self.__nombre
@@ -40,16 +37,16 @@ class Lugar:
     def jefe(self, valor):
         self.__jefe = valor
         
-def to_dict(self):
+    def to_dict(self):
         return{
             "nombre": self.nombre,
             "descripcion": self.descripcion, 
             "enemigos": self.enemigos, 
             "jefe": self.jefe 
         }
-        
-@classmethod
-def from_dict(cls, data: dict): 
+            
+    @classmethod
+    def from_dict(cls, data: dict): 
         return cls(
             nombre = data["nombre"],
             descripcion = data["descripcion"], 
