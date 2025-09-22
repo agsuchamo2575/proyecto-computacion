@@ -196,7 +196,7 @@ class Enemigo(Personaje):
             "clase": self.clase, 
             "items": self.items, 
             "es_jefe": self.es_jefe,
-            "recompensa_experiencia": self.recompensa_experiencia, 
+            "recompensaExp": self.recompensaExp, 
             "drop": self.drop
         }
     
@@ -210,8 +210,8 @@ class Enemigo(Personaje):
             nivel = data ["nivel"],
             clase = data ["clase"], 
             items = data ["items"], 
-            es_jefe= data ["es jefe"], 
-            recompensa_experiencia= data ["recompensa_experiencia"], 
+            es_jefe= data ["es_jefe"], 
+            recompensaExp= data ["recompensaExp"], 
             drop = data ["drop"]
         )
 prota = Protagonista("Agus", 100, 20, 10, 5, "Guerrera", ["espada", "escudo"], 150.0)
